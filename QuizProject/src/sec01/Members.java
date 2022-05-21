@@ -1,5 +1,7 @@
 package sec01;
 
+
+// Members 테이블 Bean 클래스 
 public class Members {
 	private String uid;
 	private String upw;
