@@ -22,7 +22,16 @@ public class MainScreen extends JFrame {
 		background = ref.setBackgroundPanel("./images/quizintro.jpg", 720, 480, null);
 		add(background);
 		
-		
+		JButton UpdateProfileButton = new JButton("프로필 수정");
+		UpdateProfileButton.setBounds(100, 350, 100, 50);
+		UpdateProfileButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new UpdateProfile(agent);
+			}
+		});
+		background.add(UpdateProfileButton);
 		
 		setResizable(false);
 		setSize(720, 480);

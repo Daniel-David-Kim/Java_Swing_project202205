@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import sec01.Members;
 
@@ -40,17 +41,6 @@ public class DBManager {
 			pstmt.setString(5, member.getUtel());
 			pstmt.setString(6, member.getUid());
 			pstmt.executeUpdate();
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	public void Select(String string, String id) {
-		PreparedStatement pstmt;
-		String sql = "select " + string + "from members where uid = ?";
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			ResultSet result = pstmt.executeQuery(sql);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
