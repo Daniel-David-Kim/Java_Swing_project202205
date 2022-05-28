@@ -43,7 +43,7 @@ public class QuizBomb extends JFrame {
 		this.agent.removePrev();
 		result = dao.select(String.format("select * from %s", tblName), tblName, false);
 		ques = (Vector<Question>)result.get("resultData");
-		qmaps = dao.getTablesMap();
+		qmaps = dao.getTablesMap().get("ones");
 		this.queNum = queNum;
 		this.tblName = tblName;
 		setTitle("Quiz!!");

@@ -48,6 +48,7 @@ public class SignIn extends JFrame {
 				} 
 			}
 			if(!values[1].equals(values[2])) JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.", "Error!", JOptionPane.ERROR_MESSAGE);
+			else if(Validation.pwValidate(values[1]) == false) JOptionPane.showMessageDialog(null, "비밀번호는 8자 이상이어야 합니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);
 			else if(Validation.dataValidate(validate, values[0]) == false)  JOptionPane.showMessageDialog(null, "중복되는 아이디입니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);
 			else if(Validation.telFormValidate(values[6]) == false) JOptionPane.showMessageDialog(null, "번호의 형식에 맞지 않습니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);
 			else if(Validation.telValidate(validate, values[6]) == false) JOptionPane.showMessageDialog(null, "중복되는 번호입니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);

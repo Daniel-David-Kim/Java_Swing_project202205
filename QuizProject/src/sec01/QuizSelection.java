@@ -45,7 +45,7 @@ public class QuizSelection extends JFrame {
 	}
 	
 	private JScrollPane selectMenu() {
-		result = dao.getTablesMap();
+		result = dao.getTablesMap().get("ones");
 		Collection<String> temp = result.values();
 		Vector<String> values = temp.stream().collect(Collectors.toCollection(Vector::new));
 		subjects = new JList<String>(values);
@@ -76,6 +76,7 @@ public class QuizSelection extends JFrame {
 				}
 			}
 			int numQue = -1;
+			System.out.println(target);
 			while(true) {
 				String ip = JOptionPane.showInputDialog(null, "풀 문제의 갯수를 입력하세요.(5/10/20 중 선택)", "input numbers", JOptionPane.INFORMATION_MESSAGE);
 				if(ip==null||ip.equals("")) return;

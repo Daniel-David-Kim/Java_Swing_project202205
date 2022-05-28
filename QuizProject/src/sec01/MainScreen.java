@@ -33,7 +33,7 @@ public class MainScreen extends JFrame {
 	private JPanel setMenuButtons() {
 		JPanel btnPan = new JPanel();
 		JButton[] menus = new JButton[3];
-		String[] labels = {"문제 풀기", "랭킹", "회원 정보 수정"};
+		String[] labels = agent.getUser().getUclass() == 1?  new String[] {"문제 풀기", "랭킹", "회원 정보 수정"} :  new String[] {"문제 풀기", "랭킹", "관리자 화면"};
 		for(int i = 0; i < menus.length; i++) {
 			menus[i] = new JButton(labels[i]) {
 				public void paintComponent(Graphics g) {
@@ -53,6 +53,12 @@ public class MainScreen extends JFrame {
 			background.add(menus[i]);
 		}
 		return btnPan;
+	}
+	
+	public static void main(String[] args) {
+		// 실험용 임시 로그인 객체입니다.
+		LoginInfo agent = new LoginInfo(new Members("user3", "3456", "이계영", "3.나는 누구일까?", "셋유저", 1, "010-3333-4444"));
+		new MainScreen(agent);
 	}
 }
 
@@ -79,7 +85,11 @@ class AllActionListener implements ActionListener {
 			agent.setCur(new UpdateProfile(agent));
 			thisPage.setVisible(false);
 			break;
-		case "관리자 화면" : break;
+		case "관리자 화면" : 
+			agent.setPrev(thisPage);
+			agent.setCur(new SettingsTemplate(agent));
+			thisPage.setVisible(false);
+			break;
 		}
 	}
 }
