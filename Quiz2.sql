@@ -78,7 +78,7 @@ insert into corrects values('user8', 19, 7);
 insert into corrects values('user9', 30, 47);
 
 create table category(
-	tname varchar(15) not null primary key,
+	tname varchar(45) not null primary key,
     cname varchar(50) not null,
     isSubject int not null    # 과목이면 1 아니면 0
 );
@@ -88,4 +88,9 @@ insert into category values('members', '회원', 0);
 insert into category values('corrects', '맞춘문제', 0);
 insert into category values('category', '테이블목록', 0);
 
+select * from members;
 select * from corrects;
+select * from ctTBL;
+select * from osTBL;
+select * from category;
+desc corrects;
