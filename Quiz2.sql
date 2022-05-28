@@ -16,6 +16,11 @@ insert into members values('user1', '1234', '김지원', '1.나는 누구일까?
 insert into members values('user2', '2345', '구준모', '2.나는 누구일까?', '둘유저', 1, '010-2222-3333');
 insert into members values('user3', '3456', '이계영', '3.나는 누구일까?', '셋유저', 1, '010-3333-4444');
 insert into members values('user4', '4567', '김지원', '4.나는 누구일까?', '넷유저', 1, '010-4444-5555');
+insert into members values('user5', '5678', '김마리', '5.나는 누구일까?', '다섯유저', 1, '010-5555-6666');
+insert into members values('user6', '6789', '독고혜성', '6.나는 누구일까?', '여섯유저', 1, '010-6666-7777');
+insert into members values('user7', '7890', '남도일', '7.나는 누구일까?', '일곱유저', 1, '010-7777-8888');
+insert into members values('user8', '8901', '하인성', '8.나는 누구일까?', '여덟유저', 1, '010-8888-9999');
+insert into members values('user9', '9012', '서가영', '9.나는 누구일까?', '아홉유저', 1, '010-9999-0000');
 
 create table osTBL(
 	que varchar(200) not null primary key,
@@ -61,15 +66,26 @@ create table corrects(
     primary key(uid),
     foreign key(uid) references members(uid) on delete cascade on update cascade
 );
-insert into corrects values('admin1', 0, 0);
-insert into corrects values('user1', 0, 0);
-insert into corrects values('user2', 0, 0);
-insert into corrects values('user3', 0, 0);
-insert into corrects values('user4', 0, 0);
+insert into corrects values('admin1', 34, 12);
+insert into corrects values('user1', 100, 99);
+insert into corrects values('user2', 62, 23);
+insert into corrects values('user3', 52, 67);
+insert into corrects values('user4', 31, 100);
+insert into corrects values('user5', 43, 0);
+insert into corrects values('user6', 120, 76);
+insert into corrects values('user7', 70, 49);
+insert into corrects values('user8', 19, 7);
+insert into corrects values('user9', 30, 47);
 
 create table category(
 	tname varchar(15) not null primary key,
-    cname varchar(50) not null
+    cname varchar(50) not null,
+    isSubject int not null    # 과목이면 1 아니면 0
 );
-insert into category values('ctTBL', '정보통신개론');
-insert into category values('osTBL', '운영체제');
+insert into category values('ctTBL', '정보통신개론', 1);
+insert into category values('osTBL', '운영체제', 1);
+insert into category values('members', '회원', 0);
+insert into category values('corrects', '맞춘문제', 0);
+insert into category values('category', '테이블목록', 0);
+
+select * from corrects;
