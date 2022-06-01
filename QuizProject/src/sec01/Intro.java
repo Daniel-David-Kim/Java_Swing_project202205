@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.border.*;
 import javax.swing.event.*;
 
 // 초기 화면. 로그인과 회원가입, 아이디/비번찾기입니다. 
@@ -12,12 +13,19 @@ public class Intro extends JFrame {
 	private JPanel background;
 	private References ref = new References();
 	private QuizDAO dao = new QuizDAO();
-	public Intro() {
+	public Intro(LoginInfo agent) {
+		if(agent != null) {
+			agent.removePrev();
+			agent = null;
+			System.out.println("로그인 객체를 삭제했습니다.");
+		} else {
+			System.out.println("로그인 객체가 비었습니다.");
+		}
 		setTitle("Greetings!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		contentPane = getContentPane();
-		background = ref.setBackgroundPanel("./images/quizintro.jpg", 720, 480, null);
+		background = ref.setBackgroundPanel("./images/main.png", 720, 480, null);
 		add(background);
 		loginSettings();
 		setResizable(false);
@@ -34,8 +42,9 @@ public class Intro extends JFrame {
 			if(i == 0) ips[i] = new JTextField(10);
 			else if(i == 1) {ips[i] = new JPasswordField(10);}
 			labels[i].setFont(new Font("Dotum", Font.BOLD, 24));
-			labels[i].setBounds(200, 200 + (i-1)*50, 70, 30);
-			ips[i].setBounds(300, 200+(i-1)*50, 150, 30);
+			labels[i].setForeground(new Color(253, 217, 39));
+			labels[i].setBounds(350, 200 + (i-1)*50, 70, 30);
+			ips[i].setBounds(450, 200+(i-1)*50, 150, 30);
 			background.add(labels[i]);
 			background.add(ips[i]);
 		}
@@ -63,19 +72,34 @@ public class Intro extends JFrame {
 				new FindAccount();
 			}
 		};
-		JButton login = new JButton("로그인");
+		JButton login = new JButton("로그인") {
+			public void paintComponent(Graphics g) {
+				g.drawImage((new ImageIcon("./images/loginmain.png")).getImage(), 0, 0, 110, 40, null);
+			}
+		};
 		login.addActionListener(btnLis);
-		login.setBounds(320, 250, 110, 40);
+		login.setBounds(420, 250, 110, 40);
+		login.setBorder(new LineBorder(new Color(13, 23, 60)));
 		background.add(login);
-		JButton signin = new JButton("회원가입");
+		JButton signin = new JButton("회원가입") {
+			public void paintComponent(Graphics g) {
+				g.drawImage((new ImageIcon("./images/signinmain.png")).getImage(), 0, 0, 120, 40, null);
+			}
+		};
 		signin.addActionListener(btnLis);
-		signin.setBounds(380, 370, 110, 40);
+		signin.setBounds(350, 370, 120, 40);
+		signin.setBorder(new LineBorder(new Color(13, 23, 60)));
 		background.add(signin);
-		JButton find = new JButton("ID/PW 찾기");
+		JButton find = new JButton("ID/PW 찾기") {
+			public void paintComponent(Graphics g) {
+				g.drawImage((new ImageIcon("./images/findmain.png")).getImage(), 0, 0, 120, 40, null);
+			}
+		};
 		find.addActionListener(btnLis);
-		find.setBounds(500, 370, 120, 40);
+		find.setBounds(480, 370, 120, 40);
+		find.setBorder(new LineBorder(new Color(13, 23, 60)));
 		background.add(find);
 	}
 	
-	public static void main(String[] args) { new Intro(); }
+	public static void main(String[] args) { new Intro(null); }
 }

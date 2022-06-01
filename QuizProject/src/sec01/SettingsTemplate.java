@@ -19,6 +19,7 @@ public class SettingsTemplate extends JFrame {
 	private JScrollPane tableScroll;
 	private Vector<String> header;
 	private String tblName;
+	private JFrame curPage;
 	SettingsTemplate(LoginInfo agent) {
 		this.agent = agent;
 		this.agent.removePrev();
@@ -26,7 +27,8 @@ public class SettingsTemplate extends JFrame {
 		setTitle("SettingsTemplate");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
-		background = ref.setBackgroundPanel("./images/clipboard7.jpg", 720, 480, null);
+		this.curPage = this;
+		background = ref.setBackgroundPanel("./images/clipboard.jpg", 720, 480, null);
 		add(background);
 		System.out.println(agent.getUser());
 		
@@ -38,9 +40,30 @@ public class SettingsTemplate extends JFrame {
 		background.add(getButton(0));
 		background.add(getButton(1));
 		background.add(getButton(2));
+		background.add(previous());
+		JButton logout = agent.logout(curPage, 90, 60, 80, 23);
+		logout.setBorder(null);
+		logout.setBackground(Color.WHITE);
+		logout.setFont(new Font("함초롬돋움", Font.BOLD, 12));
+		background.add(logout);
+		background.add(agent.loginLabel(90, 90, 280+(agent.getUser().getUname().length()-4)*10, 23, new Font("함초롬돋움", Font.BOLD, 12)));
 		setResizable(false);
 		setSize(720, 480);
 		setVisible(true);
+	}
+	
+	private JButton previous() {
+		JButton prev = new JButton("이전 화면");
+		prev.setBorder(null);
+		prev.setBackground(Color.WHITE);
+		prev.setFont(new Font("함초롬돋움", Font.BOLD, 12));
+		prev.addActionListener((e) -> {
+			agent.setPrev(curPage);
+			curPage.setVisible(false);
+			agent.setCur(new MainScreen(agent));
+		});
+		prev.setBounds(560, 60, 80, 23);
+		return prev;
 	}
 	
 	private JScrollPane getList() {

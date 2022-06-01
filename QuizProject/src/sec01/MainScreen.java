@@ -12,19 +12,30 @@ public class MainScreen extends JFrame {
 	private References ref = new References();
 	private QuizDAO dao = new QuizDAO();
 	private LoginInfo agent;
+	private JFrame curPage;
 	public MainScreen(LoginInfo agent) {
 		this.agent = agent;
 		this.agent.removePrev();
 		setTitle("Main Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
+		this.curPage = this;
 		contentPane = getContentPane();
 		background = ref.setBackgroundPanel("./images/board.jpg", 705, 450, null);
 		add(background);
-		System.out.println(agent.getUser());	
 		
+		JLabel loginLabel = agent.loginLabel(465-(agent.getUser().getUname().length()-4)*9, 17, 280+(agent.getUser().getUname().length()-4)*10, 60, new Font("HY¿±¼­L", Font.BOLD, 21));
+		loginLabel.setForeground(Color.YELLOW);
+		background.add(loginLabel);
+		JButton logout = agent.logout(curPage, 515, 70, 85, 35);
+		logout.setFont(new Font("HY¿±¼­L", Font.BOLD, 17));
+		logout.setBorder(null);
+		logout.setForeground(new Color(236, 123, 137));
+		logout.setBackground(new Color(22, 107, 82));
+		background.add(logout);
+		System.out.println(agent.getUser());	
 		add(setMenuButtons());
-
+		
 		setResizable(false);
 		setSize(720, 480);
 		setVisible(true);
@@ -79,7 +90,11 @@ class AllActionListener implements ActionListener {
 			agent.setCur(new QuizSelection(agent));
 			thisPage.setVisible(false);
 			break;
-		case "·©Å·" : break;
+		case "·©Å·" : 
+			agent.setPrev(thisPage);
+			agent.setCur(new Ranking(agent));
+			thisPage.setVisible(false);
+			break;
 		case "È¸¿ø Á¤º¸ ¼öÁ¤" : 
 			agent.setPrev(thisPage);
 			agent.setCur(new UpdateProfile(agent));

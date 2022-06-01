@@ -15,6 +15,7 @@ public class QuizSelection extends JFrame {
 	private LoginInfo agent;
 	private JList<String> subjects;
 	private HashMap<String, String> result;
+	private JFrame curPage;
 	public QuizSelection(LoginInfo agent) {
 		this.agent = agent;
 		this.agent.removePrev();
@@ -28,6 +29,7 @@ public class QuizSelection extends JFrame {
 		setResizable(false);
 		setSize(720, 480);
 		setVisible(true);
+		this.curPage = this;
 	}
 	
 	private JPanel mainPanel() {
@@ -36,12 +38,29 @@ public class QuizSelection extends JFrame {
 				g.drawImage((new ImageIcon("./images/exam.png")).getImage(), 0, 0, 500, 590, null);
 			}
 		};
+		res.add(cancel());
 		res.add(selectMenu());
 		res.add(submitBtn());
 		res.add(nameLabel());
 		res.add(titleLabel());
 		res.setBounds(100, 50, 500, 390);
 		return res;
+	}
+	
+	public JButton cancel() {
+		JButton cancel = new JButton("Æ÷±â") {
+			public void paintComponent(Graphics g) {
+				g.drawImage((new ImageIcon("./images/giveup.png")).getImage(), 0, 0, 65, 30, null);
+			}
+		};
+		cancel.setBorder(null);
+		cancel.addActionListener((e) -> {
+			agent.setPrev(curPage);
+			curPage.setVisible(false);
+			agent.setCur(new MainScreen(agent));
+		});
+		cancel.setBounds(40, 115, 65, 30);
+		return cancel;
 	}
 	
 	private JScrollPane selectMenu() {

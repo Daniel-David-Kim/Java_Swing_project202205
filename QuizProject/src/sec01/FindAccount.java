@@ -14,13 +14,16 @@ public class FindAccount extends JFrame {
 	FindAccount(){
 		setTitle("ID / Password Ã£±â");
 		contentPane = getContentPane();
-		background = ref.setBackgroundPanel("./images/quizintro.jpg", 300, 300, new BorderLayout());
+		background = ref.setBackgroundPanel("./images/security.jpg", 300, 300, new BorderLayout());
 		background.add(new FindID(), BorderLayout.CENTER);
 		background.add(createRadios(), BorderLayout.NORTH);
 		add(background);
 		setSize(300, 300);
 		setResizable(false);
 		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new FindAccount();
 	}
 	private JPanel createRadios() {
 		JPanel pan = new JPanel();

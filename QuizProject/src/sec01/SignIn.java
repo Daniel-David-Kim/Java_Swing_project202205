@@ -16,7 +16,7 @@ public class SignIn extends JFrame {
 		setTitle("회원가입");
 		setLayout(null);
 		contentPane = getContentPane();
-		background = ref.setBackgroundPanel("./images/quizintro.jpg", 720, 480, null);
+		background = ref.setBackgroundPanel("./images/resume.png", 385, 360, null);
 		add(background);
 		signinSettings();
 		setResizable(false);
@@ -32,8 +32,10 @@ public class SignIn extends JFrame {
 			labels[i] = new JLabel(names[i]);
 			if(i == 1 || i == 2) ips[i] = new JPasswordField(15);
 			else ips[i] = new JTextField(15);
-			labels[i].setBounds(50, 75+(i-1)*35, 120, 25);
-			ips[i].setBounds(200, 75+(i-1)*35, 120, 25);
+			labels[i].setBounds(50, 95+(i-1)*35, 120, 25);
+			labels[i].setFont(new Font("함초롬돋움", Font.BOLD, 12));
+			ips[i].setBounds(200, 95+(i-1)*35, 120, 25);
+			ips[i].setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 			background.add(labels[i]);
 			background.add(ips[i]);
 		}
@@ -60,7 +62,9 @@ public class SignIn extends JFrame {
 				setVisible(false);
 			}
 		});
-		submit.setBounds(150, 300, 100, 30);
+		submit.setBounds(150, 315, 100, 30);
+		submit.setFont(new Font("함초롬돋움", Font.BOLD, 11));
 		background.add(submit);
 	}
+	
 }
