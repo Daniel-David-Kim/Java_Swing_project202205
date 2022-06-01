@@ -30,7 +30,7 @@ public class SettingsTemplate extends JFrame {
 		this.curPage = this;
 		background = ref.setBackgroundPanel("./images/clipboard.jpg", 720, 480, null);
 		add(background);
-		System.out.println(agent.getUser());
+		//System.out.println(agent.getUser());
 		
 		background.add(getList());
 		tables.setSelectedIndex(0);
@@ -49,6 +49,7 @@ public class SettingsTemplate extends JFrame {
 		background.add(agent.loginLabel(90, 90, 280+(agent.getUser().getUname().length()-4)*10, 23, new Font("함초롬돋움", Font.BOLD, 12)));
 		setResizable(false);
 		setSize(720, 480);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
@@ -145,8 +146,8 @@ public class SettingsTemplate extends JFrame {
 		return divs[0];
 	}
 	
-	public static void main(String[] args) { // 실험용 임시 로그인 객체입니다.
+	/*public static void main(String[] args) { // 실험용 임시 로그인 객체입니다.
 		LoginInfo agent = new LoginInfo(new Members("admin1", "01234", "관리쟝", "나는 누구일까?", "관리자", 0, "010-1000-1111"));
 		new SettingsTemplate(agent);
-	}
+	}*/
 }

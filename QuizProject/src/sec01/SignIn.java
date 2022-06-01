@@ -21,6 +21,7 @@ public class SignIn extends JFrame {
 		signinSettings();
 		setResizable(false);
 		setSize(400, 400);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	

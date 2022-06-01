@@ -28,7 +28,7 @@ public class Ranking extends JFrame {
 			}
 		}
 		firstKey = firstKey.substring(0, firstKey.indexOf("TBL"));
-		System.out.println("첫 키 : " + firstKey);
+		//System.out.println("첫 키 : " + firstKey);
 	}
 	
 	Container c = getContentPane();
@@ -43,7 +43,7 @@ public class Ranking extends JFrame {
 		this.agent = agent;
 		this.agent.removePrev();
 		setTitle("회원정보 수정");
-		System.out.println("user : " + agent.getUser());	
+		//System.out.println("user : " + agent.getUser());	
 		setSize(720,480);
 		//setLayout(null);
 		background = ref.setBackgroundPanel("./images/RankBoard.png", 720, 450, null);
@@ -76,6 +76,7 @@ public class Ranking extends JFrame {
 		add(background);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
@@ -136,7 +137,7 @@ public class Ranking extends JFrame {
 	}
 		
 	public void ShowRank(String sub) {
-		System.out.println(sub);
+		//System.out.println(sub);
 		ArrayList<Ranker> ranker = new ArrayList<Ranker>(); // corrects에 있는 모든 회원들 담는 곳
 		try {
 			Statement stmt = con.createStatement();
@@ -158,12 +159,12 @@ public class Ranking extends JFrame {
 		Arrays.sort(rankers);
 		ranker.sort(Comparator.comparing(Ranker::getIntScore, Comparator.reverseOrder())); // 컬렉션을 정수화한 점수를 기준으로 정렬
 		LinkedList<String> ids = ranker.stream().map((r) -> r.getName()).collect(Collectors.toCollection(LinkedList::new)); // 이름만 뽑아서 컬렉션으로 추출
-		for(Ranker r:ranker) System.out.println(r);
-		System.out.println();
-		for(String s:ids) System.out.println(s);
+		//for(Ranker r:ranker) System.out.println(r);
+		//System.out.println();
+		//for(String s:ids) System.out.println(s);
 		int myRank = ids.indexOf(agent.getUser().getUid()) + 1; // 내 등수 추출 
-		System.out.println();
-		System.out.println(myRank);
+		//System.out.println();
+		//System.out.println(myRank);
 		
 		String name[] = new String[5]; // 상위 5명
 		try {
@@ -224,7 +225,7 @@ public class Ranking extends JFrame {
 		dotted.setForeground(Color.YELLOW);
 		dotted.setBounds(170, 310, 200, 35);
 		add(dotted);
-		System.out.println();
+		//System.out.println();
 		repaint();
 		revalidate();
 	}
@@ -246,9 +247,9 @@ public class Ranking extends JFrame {
 		return con;
 	}
 	
-	public static void main(String[] args) { // 실험용 임시 로그인 객체입니다.
+	/*public static void main(String[] args) { // 실험용 임시 로그인 객체입니다.
 		LoginInfo agent = new LoginInfo(new Members("admin1", "01234", "관리쟝", "나는 누구일까?", "관리자", 0, "010-1000-1111"));
 		new Ranking(agent);
-	}
+	}*/
 		
 }

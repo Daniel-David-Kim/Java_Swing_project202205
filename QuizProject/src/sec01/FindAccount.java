@@ -20,11 +20,12 @@ public class FindAccount extends JFrame {
 		add(background);
 		setSize(300, 300);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		new FindAccount();
-	}
+	}*/
 	private JPanel createRadios() {
 		JPanel pan = new JPanel();
 		pan.setOpaque(false);

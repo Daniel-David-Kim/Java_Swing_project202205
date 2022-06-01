@@ -28,6 +28,7 @@ public class QuizSelection extends JFrame {
 		add(base);	
 		setResizable(false);
 		setSize(720, 480);
+		setLocationRelativeTo(null);
 		setVisible(true);
 		this.curPage = this;
 	}
@@ -95,7 +96,18 @@ public class QuizSelection extends JFrame {
 				}
 			}
 			int numQue = -1;
-			System.out.println(target);
+			//System.out.println("selected -> " + target);
+			// 문제 수가 20개 이하면 준비중 뜨고 못넘어가게 함. 
+			String sql = String.format("select * from %s", target);
+			//System.out.println(sql);
+			HashMap<String, Object> result = dao.select(sql, target, false);
+			int numOfRows = (int)result.get("numOfRows");
+			//System.out.println(numOfRows);
+			if(numOfRows < 20) {
+				JOptionPane.showMessageDialog(null, "해당 과목은 준비 중입니다.", "Ready....", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
+			
 			while(true) {
 				String ip = JOptionPane.showInputDialog(null, "풀 문제의 갯수를 입력하세요.(5/10/20 중 선택)", "input numbers", JOptionPane.INFORMATION_MESSAGE);
 				if(ip==null||ip.equals("")) return;
@@ -134,11 +146,11 @@ public class QuizSelection extends JFrame {
 		return lb;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// 실험용 임시 로그인 객체입니다.
 		LoginInfo agent = new LoginInfo(new Members("user3", "3456", "이계영", "3.나는 누구일까?", "셋유저", 1, "010-3333-4444"));
 		new QuizSelection(agent);
-	}
+	}*/
 }
 
 class NotRangeException extends RuntimeException {

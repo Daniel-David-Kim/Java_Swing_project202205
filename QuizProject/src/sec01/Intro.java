@@ -30,6 +30,7 @@ public class Intro extends JFrame {
 		loginSettings();
 		setResizable(false);
 		setSize(720, 480);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	

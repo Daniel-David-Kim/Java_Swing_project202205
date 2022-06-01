@@ -77,10 +77,10 @@ public class UpdateProfile extends JFrame{
 				} else if(!ips[1].getText().equals(user.getUpw()) && (Validation.pwValidate(ips[1].getText()) == false)) {
 					JOptionPane.showMessageDialog(null, "비밀번호는 8자 이상이어야 합니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);
 					return;
-				} else if(Validation.telFormValidate(ips[4].getText()) == false) {
+				} else if(!ips[4].getText().equals(user.getUtel()) && Validation.telFormValidate(ips[4].getText()) == false) {
 					JOptionPane.showMessageDialog(null, "번호의 형식에 맞지 않습니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);
 					return;
-				} else if(Validation.telValidate(validate, ips[4].getText()) == false) {
+				} else if(!ips[4].getText().equals(user.getUtel()) && Validation.telValidate(validate, ips[4].getText()) == false) {
 					JOptionPane.showMessageDialog(null, "중복되는 번호입니다. 다시 입력하세요.", "Error!", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -117,6 +117,7 @@ public class UpdateProfile extends JFrame{
 		base.add(cancel);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
@@ -154,10 +155,10 @@ public class UpdateProfile extends JFrame{
 		return con;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// 실험용 임시 로그인 객체입니다.
 		LoginInfo agent = new LoginInfo(new Members("user3", "3456", "이계영", "3.나는 누구일까?", "셋유저", 1, "010-3333-4444"));
 		new UpdateProfile(agent);
-	}
+	}*/
 	
 }

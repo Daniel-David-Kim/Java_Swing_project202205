@@ -35,6 +35,7 @@ public class TableDataControl extends JFrame {
 		add(background);
 		setSize(500, 220 + 50*(header.size()));
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	

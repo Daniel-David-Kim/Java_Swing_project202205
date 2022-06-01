@@ -33,11 +33,12 @@ public class MainScreen extends JFrame {
 		logout.setForeground(new Color(236, 123, 137));
 		logout.setBackground(new Color(22, 107, 82));
 		background.add(logout);
-		System.out.println(agent.getUser());	
+		//System.out.println(agent.getUser());	
 		add(setMenuButtons());
 		
 		setResizable(false);
 		setSize(720, 480);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
@@ -66,11 +67,11 @@ public class MainScreen extends JFrame {
 		return btnPan;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// 실험용 임시 로그인 객체입니다.
 		LoginInfo agent = new LoginInfo(new Members("user3", "3456", "이계영", "3.나는 누구일까?", "셋유저", 1, "010-3333-4444"));
 		new MainScreen(agent);
-	}
+	}*/
 }
 
 class AllActionListener implements ActionListener {

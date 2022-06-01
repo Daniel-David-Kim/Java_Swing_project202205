@@ -56,6 +56,7 @@ public class QuizBomb extends JFrame {
 		add(base);
 		setSize(720, 480);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setVisible(true);
 		thisFrame = this;
 	}
@@ -64,7 +65,8 @@ public class QuizBomb extends JFrame {
 		count++;
 		Random rand = new Random();
 		JLabel queLabel; JPanel selPanel; JLabel[] sels = new JLabel[4];
-		selPanel = new JPanel();
+		// 문제 패널
+		selPanel = new JPanel(new GridLayout(4, 1));
 		int randInt = -1;
 		while(true) {
 			randInt = rand.nextInt(ques.size());
@@ -73,7 +75,7 @@ public class QuizBomb extends JFrame {
 		}
 		previous.add(randInt);
 		Question selected = ques.get(randInt);
-		queLabel = new JLabel("<html>[" + count + "]" + selected.getQue() + "</html>");
+		queLabel = new JLabel("<html><body>[" + count + "]" + selected.getQue() + "</body></html>");
 		queLabel.setFont(new Font("돋움", Font.PLAIN, 13));
 		queLabel.setBorder(new LineBorder(Color.BLACK, 1));
 		queLabel.setBounds(30, 25, 435, 100);
@@ -83,12 +85,14 @@ public class QuizBomb extends JFrame {
 		for(int j = 0; j < 5; j++) Collections.shuffle(lis);
 		int ansNum = lis.indexOf(ans);
 		for(int k = 0; k < sels.length; k++) {
-			sels[k] = new JLabel("<html>[" + (k+1) + "]" + lis.get(k).trim() + "&nbsp;&nbsp;</html>");
+			sels[k] = new JLabel("<html><body>[" + (k+1) + "]" + lis.get(k).trim() + "&nbsp;&nbsp;</body></html>");
 			sels[k].setFont(new Font("돋움", Font.PLAIN, 12));
 			sels[k].addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e) {
 					String text = ((JLabel)e.getSource()).getText();
-					int idx = Integer.parseInt(text.substring(7, 8))-1;
+					//int idx = Integer.parseInt(text.substring(7, 8))-1;
+					int idx = Integer.parseInt(text.substring(13, 14))-1;
+					//System.out.println("고른 번호 : " + (idx+1));
 					setCorOrwr(true);
 					if(idx == ansNum) {
 						counter.interrupt();
@@ -190,10 +194,10 @@ public class QuizBomb extends JFrame {
 			}
 		}
 	}
-	
+	/*
 	public static void main(String[] args) {
 		// 실험용 임시 로그인 객체입니다.
 		LoginInfo agent = new LoginInfo(new Members("user3", "3456", "이계영", "3.나는 누구일까?", "셋유저", 1, "010-3333-4444"));
-		new QuizBomb(agent, 5, "ctTBL");
-	}
+		new QuizBomb(agent, 10, "ctTBL");
+	}*/
 }
